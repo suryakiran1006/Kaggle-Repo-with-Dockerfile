@@ -40,7 +40,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ secrets.PUBLIC_REGISTRY }}
           ECR_REPOSITORY: ${{ secrets.MLFLOW_REPO_NAME }}
-          IMAGE_TAG: ${{ github.sha }}
+          IMAGE_TAG: latest
 #           DOCKERFILE: ${{ github.event.push. }}
         run: |
           docker build -f mlflow-dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
