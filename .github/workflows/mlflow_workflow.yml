@@ -42,10 +42,11 @@ jobs:
         env:
           ECR_REGISTRY: ${{ secrets.PUBLIC_REGISTRY }}
           IMAGE_TAG: latest
+          ECR_REPO: ${{ secrets.MLFLOW_REPO_NAME }}
         with:
           dockerfile: mlflow-dockerfile
           context: .
           create_repo: ${{ secrets.MLFLOW_REPO_NAME }}
           tags: |
-            $ECR_REGISTRY/${{ steps.repoName.outputs.reponame }}:latest
-            $ECR_REGISTRY/${{ steps.repoName.outputs.reponame }}:${{ github.sha }}
+            $ECR_REGISTRY/$create_repo:latest
+            $ECR_REGISTRY/$create_repo:${{ github.sha }}
