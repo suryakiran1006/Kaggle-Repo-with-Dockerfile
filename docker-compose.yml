@@ -1,5 +1,5 @@
 version: "3.9"
-services::
+services:
   pytorch-service:
     image: public.ecr.aws/n3k4k7j4/nvidia-pytorch-docker-image
     ports:
