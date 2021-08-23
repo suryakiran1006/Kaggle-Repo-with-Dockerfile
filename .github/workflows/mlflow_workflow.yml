@@ -39,13 +39,11 @@ jobs:
       - name: Build, tag, and push image to Amazon ECR-Public
         id: build-and-push
         uses: pahud/ecr-public-action@8cd826db40befb59b0cd0b60b22a7ba72d06a7f7
-        env:
+        with:
           ECR_REGISTRY: ${{ secrets.PUBLIC_REGISTRY }}
           IMAGE_TAG: latest
-        with:
           dockerfile: mlflow-dockerfile
           context: .
-          create_repo: mlflow-docker-image
+          create_repo: ${{ secrets.MLFLOW_REPO_NAME }}
           tags: |
-            public.ecr.aws/n3k4k7j4/mlflow-docker-image:latest
-            public.ecr.aws/n3k4k7j4/mlflow-docker-image:${{ github.sha }}
+            $ECR_REGISTRY/$create_repo:latest
