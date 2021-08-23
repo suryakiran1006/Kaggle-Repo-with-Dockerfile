@@ -48,5 +48,5 @@ jobs:
           context: .
           create_repo: $ECR_REPO
           tags: |
-            $ECR_REGISTRY/$ECR_REPO:latest
-            $ECR_REGISTRY/$ECR_REPO:${{ github.sha }}
+            $ECR_REGISTRY/mlflow-docker-image:latest
+            $ECR_REGISTRY/mlflow-docker-image:${{ github.sha }}
