@@ -39,8 +39,7 @@ jobs:
       - name: Print contents of login-ecr
         run: |
           echo ${{ toJSON(steps.login-ecr) }}
-          echo ${{ github.event.push }}
-          echo ${{ github.event.workflow_dispatch }}
+          echo ${{ toJSON(github.event) }}
         
       - name: Build, tag, and push image to Amazon ECR
         env:
