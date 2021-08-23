@@ -1,5 +1,9 @@
 FROM nvcr.io/nvidia/pytorch:21.07-py3
 
-RUN pip install jupyter==1.0.0
+RUN pip install jupyter==1.0.0 \
+    && pip install transformers==4.9.2 \
+    && pip install fire==0.4.0 \
+    && pip install boto3==1.18.26 \
+    && pip install hydra-core==1.1.1
 
 WORKDIR /workspace
