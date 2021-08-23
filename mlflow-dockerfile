@@ -1,6 +1,7 @@
 FROM python:3.8.11-slim-buster
 
 RUN pip install mlflow==1.19.0 \
-    && pip install boto3==1.18.26
+    && pip install boto3==1.18.26 \
+    && pip install psycopg2==2.9.1
 
 WORKDIR /workspace
