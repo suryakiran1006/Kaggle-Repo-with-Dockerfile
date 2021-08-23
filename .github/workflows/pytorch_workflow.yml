@@ -1,0 +1,43 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Workflow to build and push pytorch docker image to public AWS ECR
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    tags: v**
+    paths: [pytorch-dockerfile]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    paths: [mlflow-dockerfile]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build_push_pytorch_image_to_docker:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    
+      - uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+        
+      - name: Build, tag, and push image to Amazon ECR-Public
+        id: build-and-push
+        uses: pahud/ecr-public-action@8cd826db40befb59b0cd0b60b22a7ba72d06a7f7
+        with:
+          dockerfile: pytorch-dockerfile
+          context: .
+          create_repo: ${{ secrets.PYTORCH_REPO_NAME }}
+          tags: |
+            ${{ secrets.PUBLIC_REGISTRY }}/${{ secrets.PYTORCH_REPO_NAME }}:latest
