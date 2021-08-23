@@ -45,7 +45,7 @@ jobs:
         with:
           dockerfile: mlflow-dockerfile
           context: .
-          create_repo: ${{ secrets.MLFLOW_REPO_NAME }}
+          create_repo: mlflow-docker-image
           tags: |
-            $ECR_REGISTRY/${{ secrets.MLFLOW_REPO_NAME }}:latest
-            $ECR_REGISTRY/${{ secrets.MLFLOW_REPO_NAME }}:${{ github.sha }}
+            public.ecr.aws/n3k4k7j4/mlflow-docker-image:latest
+            public.ecr.aws/n3k4k7j4/mlflow-docker-image:${{ github.sha }}
