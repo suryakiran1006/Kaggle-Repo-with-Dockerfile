@@ -1,0 +1,16 @@
+version: "3.9"
+services::
+  pytorch-service:
+    image: public.ecr.aws/n3k4k7j4/nvidia-pytorch-docker-image
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/workspace
+    command: ["python","-m","jupyter","notebook","--ip=0.0.0.0","--host=8888","--no-browser","--allow-root"]
+  mlflow-service:
+    image: public.ecr.aws/n3k4k7j4/mlflow-docker-image
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/workspace
+    
