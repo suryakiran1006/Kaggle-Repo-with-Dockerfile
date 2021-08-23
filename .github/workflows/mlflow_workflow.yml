@@ -38,7 +38,7 @@ jobs:
         
       - name: Print contents of login-ecr
         run: |
-          echo ${{ steps.login-ecr.outputs.* }}
+          echo ${{ toJSON(steps.login-ecr.outputs.*) }}
           echo ${{ github.event.push.paths }}
           echo ${{ github.event.workflow_dispatch.paths }}
         
