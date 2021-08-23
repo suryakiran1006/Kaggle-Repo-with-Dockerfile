@@ -38,7 +38,7 @@ jobs:
       - name: Print contents of login-ecr
         run: |
           echo ${{ steps.login-ecr.outputs.* }}
-          echo ${{ github.event.push.* }}
+          echo ${{ github.event.push.paths }}
         
 #       - name: Build, tag, and push image to Amazon ECR
 #         env:
